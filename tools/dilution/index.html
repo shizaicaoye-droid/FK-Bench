@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>希釈計算サイト</title>
+</head>
+
+ <link rel="stylesheet" href="style.css">
+
+<body><a href="../../" style="display:block;padding:16px">← FKBench ホーム</a>
+    <main class="container">
+
+    <h1>🧪 希釈計算サイト</h1>
+    
+    <h2>通常希釈</h2>
+
+<p>原液濃度</p>
+<div class="input-row">
+    <input type="number" id="stock" step="any" placeholder="例：100">
+
+    <select id="stockUnit">
+        <option value="M">M</option>
+        <option value="mM" selected>mM</option>
+        <option value="uM">µM</option>
+    </select>
+</div>
+
+<p>目的濃度</p>
+<div class="input-row">
+    <input type="number" id="target" step="any" placeholder="例：5">
+
+    <select id="targetUnit">
+        <option value="M">M</option>
+        <option value="mM" selected>mM</option>
+        <option value="uM">µM</option>
+    </select>
+</div>
+
+<p>最終液量</p>
+<div class="input-row">
+    <input type="number" id="finalVolumeNormal" step="any" placeholder="例：1000">
+
+    <select id="finalVolumeUnit">
+        <option value="L">L</option>
+        <option value="mL">mL</option>
+        <option value="uL" selected>µL</option>
+    </select>
+</div>
+
+<button onclick="calculateNormal()">計算する</button>
+
+<div id="normalResult" class="result"></div>
+    <p id="result" class="result"></p>
+
+    
+    
+  <hr>
+
+  <h2>相対濃度から計算</h2>
+
+ <p>目標の相対濃度</p>
+ <input
+    type="number"
+    id="relative"
+    step="any"
+    placeholder="例：0.2">
+
+ <p>最終液量</p>
+ <input
+    type="number"
+    id="finalVolume"
+    step="any"
+    placeholder="例：1000">
+
+ <select id="volumeUnit">
+    <option value="µL">µL</option>
+    <option value="mL">mL</option>
+ </select>
+
+ <br><br>
+
+ <button onclick="calculateRelative()">
+    相対濃度を計算する
+ </button>
+
+ <p id="relativeResult" class="result"></p>
+
+ <hr>
+
+<section class="calculator-section">
+    <h2>段階希釈プランナー</h2>
+
+    <p>まずは、全段階を同じ倍率で希釈するモードです。</p>
+
+    <label for="serialSteps">段階数</label>
+    <input
+        type="number"
+        id="serialSteps"
+        min="1"
+        step="1"
+        value="3"
+    >
+
+    <label for="serialFactor">各段階の希釈倍率</label>
+    <input
+        type="number"
+        id="serialFactor"
+        min="1"
+        step="any"
+        value="10"
+    >
+<label for="serialVolumeUnit">液量単位（共通）</label>
+
+<select id="serialVolumeUnit">
+    <option value="uL" selected>µL</option>
+    <option value="mL">mL</option>
+</select>
+    <label for="intermediateUse">各段階で実験に使う量</label>
+   
+        <input
+            type="number"
+            id="intermediateUse"
+            min="0"
+            step="any"
+            value="200"
+        >
+
+        
+   
+
+    <label for="finalRequired">最終段階で必要な量</label>
+    <input
+        type="number"
+        id="finalRequired"
+        min="0"
+        step="any"
+        value="1000"
+    >
+
+    <label for="extraVolume">各段階の固定余裕量</label>
+    <input
+        type="number"
+        id="extraVolume"
+        min="0"
+        step="any"
+        value="50"
+    >
+
+    <button onclick="calculateSerialDilution()">
+        希釈計画を作成
+    </button>
+
+    <div id="serialResult" class="result"></div>
+</section>
+ </main><script src="script.js"></script>
+
+
+</body>
+
+</html>
